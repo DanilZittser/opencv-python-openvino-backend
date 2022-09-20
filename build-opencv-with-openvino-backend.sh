@@ -28,7 +28,7 @@ cmake \
   -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR_PATH} \
   ${OPENCV_DIR_PATH}
 
-make -j8 && make install
+make -j$(nproc) && make install
 cd ..
 
 # download OpenVINO person-detection-0200 model
