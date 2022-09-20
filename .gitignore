@@ -1,0 +1,10 @@
+build
+install
+opencv-4.6.0
+openvino-2022.1.1
+4.6.0.zip
+l_openvino_toolkit_ubuntu20_2022.1.1.7030.39aba80957e.tgz
+person-detection-0200.bin
+person-detection-0200.xml
+result.jpg
+.idea/*
