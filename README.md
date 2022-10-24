@@ -1,5 +1,10 @@
-# opencv-python-openvino-backend
-Unofficial instruction of how to build opencv with openvino support.
+# Run OpenVINO model via OpenCV DNN C++ and Python API
+
+This project present how to:
+- build opencv with openvino support
+- do inference openvino model via OpenCV DNN C++ API
+
+Also, it compares model throughput on C++ and Python. 
 
 Usefull links:
 - [OpenCV: Open Source Computer Vision Library](https://github.com/opencv/opencv)
@@ -8,12 +13,21 @@ Usefull links:
 - [OpenCV configuration options reference](https://docs.opencv.org/4.x/db/d05/tutorial_config_reference.html)
 - [Intel's Deep Learning Inference Engine backend](https://github.com/opencv/opencv/wiki/Intel%27s-Deep-Learning-Inference-Engine-backend)
 - [BuildOpenCV4OpenVINO](https://github.com/opencv/opencv/wiki/BuildOpenCV4OpenVINO)
+- [Using OpenCV with gcc and CMake](https://docs.opencv.org/4.x/db/df5/tutorial_linux_gcc_cmake.html)
+- [Mat - The Basic Image Container](https://docs.opencv.org/4.x/d6/d6d/tutorial_mat_the_basic_image_container.html)
+- [YOLO DNNs](https://docs.opencv.org/4.x/da/d9d/tutorial_dnn_yolo.html)
 
 ## Prerequisites
 ```bash
 sudo apt remove --purge cmake
 sudo apt update
 sudo apt install -y cmake unzip wget
+```
+
+## Clone repo
+```bash
+git clone git@github.com:DanilZittser/opencv-python-openvino-backend.git
+cd opencv-python-openvino-backend
 ```
 
 ## Declare environment variables
