@@ -56,14 +56,37 @@ make -j$(nproc) && make install
 cd ..
 ```
 
-## Check installation
+## Do model inference
+#### Download model
+
 ```bash
 # download OpenVINO person-detection-0200 model
 wget https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/3/person-detection-0200/FP32/person-detection-0200.xml
 wget https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/3/person-detection-0200/FP32/person-detection-0200.bin
-
-export PYTHONPATH=${INSTALL_DIR_PATH}/lib/python3.8/site-packages/cv2/python-3.8/:$PYTHONPATH
-python3 check.py
 ```
 
 For details of model output read model description - [person-detection-0200](https://github.com/openvinotoolkit/open_model_zoo/tree/master/models/intel/person-detection-0200).
+
+The results of launches on [HP OMEN Laptop 15-en1021ur](https://support.hp.com/rs-en/document/c07994653).
+
+#### Python inference
+```bash
+export PYTHONPATH=${INSTALL_DIR_PATH}/lib/python3.8/site-packages/cv2/python-3.8/:$PYTHONPATH
+python3 samples/main.py --xml person-detection-0200.xml --bin person-detection-0200.bin --video person.mp4
+
+>>> Throughput = 259.16 fps
+```
+
+#### C++ inference
+```bash
+export OpenCV_DIR=${INSTALL_DIR_PATH}/lib/cmake/opencv4
+
+mkdir cmake-build && cd $_
+cmake ../
+make -j$(nproc)
+./opencv_python_openvino_backend --xml ../person-detection-0200.xml --bin ../person-detection-0200.bin --video ../person.mp4
+
+>>> Throughput = 269.25 fps
+```
+
+

@@ -35,5 +35,19 @@ cd ..
 wget https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/3/person-detection-0200/FP32/person-detection-0200.xml
 wget https://storage.openvinotoolkit.org/repositories/open_model_zoo/2022.1/models_bin/3/person-detection-0200/FP32/person-detection-0200.bin
 
+# run Python inference
 export PYTHONPATH=${INSTALL_DIR_PATH}/lib/python3.8/site-packages/cv2/python-3.8/:$PYTHONPATH
-python3 check.py
+echo "Run Python inference"
+echo "===================="
+python3 samples/main.py --xml person-detection-0200.xml --bin person-detection-0200.bin --video person.mp4
+
+# run C++ inference
+export OpenCV_DIR=${INSTALL_DIR_PATH}/lib/cmake/opencv4
+
+mkdir cmake-build && cd $_
+cmake ../
+make -j$(nproc)
+cd ../
+echo "Run C++ inference"
+echo "================="
+./cmake-build/opencv_python_openvino_backend --xml person-detection-0200.xml --bin person-detection-0200.bin --video person.mp4
